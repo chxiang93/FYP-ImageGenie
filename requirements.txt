@@ -4,3 +4,4 @@ protobuf==3.19.6
 tqdm
 imageio
 opencv-contrib-python
+Django==4.1
