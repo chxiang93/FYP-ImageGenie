@@ -1,8 +1,10 @@
+numpy==1.22.4
 keras-cv==0.4.1
 pycocotools
 protobuf==3.19.6
-tqdm
-imageio
-opencv-contrib-python
+tqdm==4.64.1
+imageio==2.28.1
+opencv-contrib-python==4.7.0.72
+Pillow==9.1.1
 Django==4.1
 djangorestframework==3.14.0
