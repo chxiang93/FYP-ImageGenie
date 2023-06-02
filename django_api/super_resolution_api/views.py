@@ -11,7 +11,7 @@ from PIL import Image
 from .super_resolution import super_resolution
 
 # Create your views here.
-class CartoonifyView(APIView):
+class SuperResolutionView(APIView):
     parser_classes = (MultiPartParser, FormParser)
     permission_classes = [permissions.AllowAny]
 
