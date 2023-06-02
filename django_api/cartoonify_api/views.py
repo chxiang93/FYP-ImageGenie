@@ -22,7 +22,7 @@ class CartoonifyView(APIView):
 
         cartooned_img = cartoonify(input_img=input_img)
 
-        success, cartooned_img = cv2.imdecode(".jpg", cartooned_img)
+        success, cartooned_img = cv2.imencode(".jpg", cartooned_img)
         cartooned_img = cartooned_img.tostring()
 
         response = HttpResponse(content_type="image/jpeg")
