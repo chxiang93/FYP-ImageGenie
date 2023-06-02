@@ -24,7 +24,7 @@ class SuperResolutionView(APIView):
 
         upscaled_img = super_resolution(input_img=input_img)
 
-        success, upscaled_img = cv2.imdecode(".jpg", upscaled_img)
+        success, upscaled_img = cv2.imencode(".jpg", upscaled_img)
         upscaled_img = upscaled_img.tostring()
 
         response = HttpResponse(content_type="image/jpeg")
