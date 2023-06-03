@@ -10,9 +10,6 @@ matplotlib.rcParams["figure.figsize"] = (12, 12)
 matplotlib.rcParams["axes.grid"] = False
 
 import numpy as np
-import PIL.Image
-import time
-import functools
 
 def tensor_to_image(tensor):
     tensor = tensor * 255
@@ -48,20 +45,12 @@ def imshow(image, title=None):
 def neural_transfer(input_img, style_img):
     print(style_img)
 
-    plt.subplot(1, 3, 1)
-    imshow(input_img, 'Content Image')
-
-    plt.subplot(1, 3, 2)
-    imshow(style_img, 'Style Image')
+    input_img = load_img(input_img)
+    style_img = load_img(style_img)
 
     import tensorflow_hub as hub
     hub_model = hub.load('neural_transfer_model')
     stylized_image = hub_model(tf.constant(input_img), tf.constant(style_img))[0]
     transfer_image = tensor_to_image(stylized_image)
-    plt.subplot(1, 3, 3)
-    plt.imshow(transfer_image)
-    plt.title("Transfered Image")
-
-    plt.show()
 
     return transfer_image

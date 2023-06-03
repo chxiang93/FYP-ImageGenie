@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from .stable_diffusion import stable_diffusion
 
 # Create your views here.
-class NeuralTransferView(APIView):
+class StableDiffusionView(APIView):
     parser_classes = (MultiPartParser, FormParser)
     permission_classes = [permissions.AllowAny]
 

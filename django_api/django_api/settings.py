@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'cartoonify_api.apps.CartoonifyApiConfig',
     'neural_transfer_api.apps.NeuralTransferApiConfig',
     'super_resolution_api.apps.SuperResolutionApiConfig',
-    'stable_diffusion_api.apps.StableDifussionApiConfig',
+    'stable_diffusion_api.apps.StableDiffusionApiConfig',
 ]
 
 MIDDLEWARE = [

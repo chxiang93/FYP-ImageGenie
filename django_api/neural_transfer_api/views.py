@@ -17,11 +17,21 @@ class NeuralTransferView(APIView):
         input_img = request.data["input_image"]
         style_img = request.data["style_image"]
 
-        print(input_img)
+        print(type(input_img))
         print(style_img)
 
-        input_img = np.array(input_img)
-        style_img = np.array(style_img)
+        input_img = input_img.open().read()
+        input_img = np.asarray(bytearray(input_img))
+        input_img = cv2.imdecode(input_img, cv2.IMREAD_COLOR)
+        cv2.cvtColor(input_img, cv2.COLOR_BGR2RGB)
+
+        style_img = style_img.open().read()
+        style_img = np.asarray(bytearray(style_img))
+        style_img = cv2.imdecode(np.frombuffer(style_img, np.uint8), cv2.IMREAD_COLOR)
+        cv2.cvtColor(style_img, cv2.COLOR_BGR2RGB)
+
+        print(input_img)
+        print(type(input_img))
 
         transfered_img = neural_transfer(input_img=input_img, style_img=style_img)
 
