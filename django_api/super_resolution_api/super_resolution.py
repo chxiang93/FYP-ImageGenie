@@ -1,12 +1,17 @@
 # import the necessary packages
 import time
 import cv2
+import os
 
-def super_resolution(input_img, model_path="models/EDSR_x4.pb"):
+def super_resolution(input_img, model_path=""):
+    model_path = os.path.dirname(os.path.realpath(__file__))
+    model_path = os.path.join(model_path, "models\\EDSR_x4.pb")
     # extract the model name and model scale from the file path
-    model_name = model_path.split("/")[-1].split("_")[0].lower()
-    model_scale = model_path.split("_x")[-1]
-    model_scale = int(model_scale[:model_scale.find(".")])
+    # model_name = model_path.split("/")[-1].split("_")[0].lower()
+    model_name = "edsr"
+    # model_scale = model_path.split("_x")[-1]
+    # model_scale = int(model_scale[:model_scale.find(".")])
+    model_scale = 4
 
     # initialize OpenCV's super resolution DNN object, load the super
     # resolution model from disk, and set the model name and scale
@@ -27,6 +32,8 @@ def super_resolution(input_img, model_path="models/EDSR_x4.pb"):
     start = time.time()
     upscaled_img = sr.upsample(input_img)
     end = time.time()
+
+    upscaled_img = cv2.cvtColor(upscaled_img, cv2.COLOR_BGR2RGB)
 
     print("[INFO] super resolution took {:.6f} seconds".format(end - start))
 

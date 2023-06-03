@@ -20,6 +20,8 @@ class SuperResolutionView(APIView):
 
         print(input_img)
 
+        input_img = Image.open(input_img)
+
         input_img = np.array(input_img)
 
         upscaled_img = super_resolution(input_img=input_img)
