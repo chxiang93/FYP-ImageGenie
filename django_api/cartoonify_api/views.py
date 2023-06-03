@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from django.http import HttpResponse
+from PIL import Image
 from .cartoonify import cartoonify
 
 # Create your views here.
@@ -17,6 +18,8 @@ class CartoonifyView(APIView):
         input_img = request.data["input_image"]
 
         print(input_img)
+
+        input_img = Image.open(input_img)
 
         input_img = np.array(input_img)
 
