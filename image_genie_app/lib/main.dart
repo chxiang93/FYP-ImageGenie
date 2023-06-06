@@ -1,21 +1,21 @@
 import "package:flutter/material.dart";
 
 void main() {
-  runApp(ImageGenieApp());
+    runApp(ImageGenieApp());
 }
 
 class ImageGenieApp extends StatelessWidget {
-  const ImageGenieApp({Key? key}) : super(key: key);
-  
-  @override
-  Widget build(BuildContext context) {
+    const ImageGenieApp({Key? key}) : super(key: key);
+
+    @override
+    Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
         body: Container(
-          child: Center(child: Text("Hello")),
+            child: Center(child: Text("Hello")),
         ),
-      ),
+        ),
     );
   }
 }
