@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'home_page.dart';
 
 class SplashPage extends StatelessWidget {
     const SplashPage({Key? key}) : super(key: key);
 
     @override
     Widget build(BuildContext context) {
+        Future.delayed(const Duration(seconds: 3), () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: ((context) => const HomePage()))
+            );
+        });
+
         return Scaffold(
             backgroundColor: const Color(0xFF0025AA),
             body: Stack(
