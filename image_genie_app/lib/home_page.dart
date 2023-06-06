@@ -23,11 +23,13 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      ImageFunctionCard(image_path: "assets/sr_icon.png", title: "Super Resolution"),
+                      ImageFunctionCard(imagePath: "assets/sr_icon.png", title: "Super Resolution"),
                       IconFunctionCard(icon: Icons.compare, title: "Neural Style Transfer")
                     ],
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       IconFunctionCard(icon: Icons.flutter_dash, title: "Cartoonify"),
                       IconFunctionCard(icon: Icons.draw, title: "Text to Image")
@@ -69,10 +71,10 @@ class IconFunctionCard extends StatelessWidget {
 }
 
 class ImageFunctionCard extends StatelessWidget {
-  String image_path;
+  String imagePath;
   String title;
 
-  ImageFunctionCard({Key? key, required this.image_path, required this.title}) : super(key: key);
+  ImageFunctionCard({Key? key, required this.imagePath, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +82,7 @@ class ImageFunctionCard extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       child: Column(
         children: [
-          Image.asset(image_path, width: 50, height: 50,),
+          Image.asset(imagePath, width: 50, height: 50,),
           const SizedBox(height: 5,),
           Text(title, style: const TextStyle(fontSize: 12),),
         ],
