@@ -11,11 +11,7 @@ class ImageGenieApp extends StatelessWidget {
     Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Scaffold(
-        body: Container(
-            child: Center(child: Text("Hello")),
-        ),
-        ),
+        home: Container()
     );
   }
 }
