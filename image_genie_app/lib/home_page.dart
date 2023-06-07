@@ -8,11 +8,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0025AA),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        centerTitle: true,
-      ),
+      appBar: const ImageGenieAppBar(),
       drawer: Drawer(),
       body: Column(
         children: [

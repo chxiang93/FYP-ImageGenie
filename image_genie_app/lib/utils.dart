@@ -6,11 +6,14 @@ class Utils {
   static Color secondaryColor = const Color(0xFFF5F5F5);
 }
 
-class ImageGenieAppBar extends StatelessWidget {
+class ImageGenieAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ImageGenieAppBar({Key? key}) : super(key: key);
 
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  
   @override 
-  Widget build(BuildContext context) {
+  PreferredSizeWidget build(BuildContext context) {
     return AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
