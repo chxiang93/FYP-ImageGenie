@@ -39,3 +39,30 @@ class ImageGenieAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 }
+
+class ImagePlaceholderCard extends StatelessWidget {
+  const ImagePlaceholderCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class UploadButton extends StatelessWidget {
+  const UploadButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class SubmitButton extends StatelessWidget {
+  const SubmitButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
