@@ -3,7 +3,7 @@ import 'splash_page.dart';
 import 'home_page.dart';
 
 void main() {
-    runApp(ImageGenieApp());
+    runApp(const ImageGenieApp());
 }
 
 class ImageGenieApp extends StatelessWidget {
