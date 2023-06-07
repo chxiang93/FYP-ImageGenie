@@ -11,11 +11,16 @@ class HomePage extends StatelessWidget {
       appBar: const ImageGenieAppBar(),
       drawer: Drawer(),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             height: 120,
             padding: const EdgeInsets.all(10),
-            child: Text("Dashboard", style: TextStyle(fontSize: 16, color: Colors.white),),
+            child: const Text(
+              "Dashboard", 
+              textAlign: TextAlign.start,
+              style: TextStyle(fontSize: 16, color: Colors.white),
+            ),
           ),
           Expanded(
             child: Container(
@@ -76,18 +81,49 @@ class IconFunctionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.all(30),
-      child: Column(
-        children: [
-          Icon(
-            icon,
-            size: 40,
-            color: Colors.black,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 8.0,
+            offset: const Offset(3.0, 5.0),
           ),
-          const SizedBox(height: 5,),
-          Text(title, style: const TextStyle(fontSize: 12),),
-        ],
+        ]
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Material(
+          color: Utils.secondaryColor,
+          child: InkWell(
+            highlightColor: Colors.black.withOpacity(0.2),
+            focusColor: Colors.grey.withOpacity(0.1),
+            onTap: () {
+              
+            },
+            child: Container(
+              width: (MediaQuery.of(context).size.width / 2.0) - 110,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: const EdgeInsets.all(20),
+              // margin: const EdgeInsets.all(30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(
+                    icon,
+                    size: 80,
+                    color: Colors.black,
+                  ),
+                  const SizedBox(height: 5,),
+                  Text(title, style: const TextStyle(fontSize: 12),),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -102,26 +138,45 @@ class ImageFunctionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.all(30),
       decoration: BoxDecoration(
-        color: Utils.secondaryColor,
-        border: Border.all(color: Colors.black, width: 1),
-        borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
-            blurRadius: 10,
-            offset: const Offset(2.0, 5.0),
+            blurRadius: 8.0,
+            offset: const Offset(3.0, 5.0),
           ),
         ]
       ),
-      padding: const EdgeInsets.all(20),
-      margin: const EdgeInsets.all(30),
-      child: Column(
-        children: [
-          Image.asset(imagePath, width: 60, height: 60,),
-          const SizedBox(height: 5,),
-          Text(title, style: const TextStyle(fontSize: 12),),
-        ],
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Material(
+          color: Utils.secondaryColor,
+          child: InkWell(
+            highlightColor: Colors.black.withOpacity(0.2),
+            focusColor: Colors.grey.withOpacity(0.1),
+            onTap: () {
+              
+            },
+            child: Container(
+              width: (MediaQuery.of(context).size.width / 2.0) - 110,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: const EdgeInsets.all(20),
+              // margin: const EdgeInsets.all(30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset(imagePath, width: 80, height: 80,),
+                  const SizedBox(height: 5,),
+                  Text(title, style: const TextStyle(fontSize: 12),),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
