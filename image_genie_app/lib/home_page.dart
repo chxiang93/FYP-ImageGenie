@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'utils.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -7,6 +8,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0025AA),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+      ),
+      drawer: Drawer(),
       body: Column(
         children: [
           Container(
@@ -16,24 +23,40 @@ class HomePage extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              color: const Color(0xFFF5F5F5),
+              decoration: BoxDecoration(
+                color: Utils.secondaryColor,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 8.0,
+                    offset: const Offset(0.0, 5.0)
+                  )
+                ],
+              ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: const [
-                      ImageFunctionCard(imagePath: "assets/sr_icon.png", title: "Super Resolution"),
-                      IconFunctionCard(icon: Icons.compare, title: "Neural Style Transfer")
-                    ],
+                  Expanded(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+                        ImageFunctionCard(imagePath: "assets/sr_icon.png", title: "Super Resolution"),
+                        IconFunctionCard(icon: Icons.compare, title: "Neural Style Transfer")
+                      ],
+                    ),
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: const [
-                      IconFunctionCard(icon: Icons.flutter_dash, title: "Cartoonify"),
-                      IconFunctionCard(icon: Icons.draw, title: "Text to Image")
-                    ],
+                  Expanded(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+                        IconFunctionCard(icon: Icons.flutter_dash, title: "Cartoonify"),
+                        IconFunctionCard(icon: Icons.draw, title: "Text to Image")
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -54,12 +77,13 @@ class IconFunctionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(20),
+      margin: const EdgeInsets.all(30),
       child: Column(
         children: [
           Icon(
             icon,
-            size: 30,
+            size: 40,
             color: Colors.black,
           ),
           const SizedBox(height: 5,),
@@ -79,10 +103,23 @@ class ImageFunctionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Utils.secondaryColor,
+        border: Border.all(color: Colors.black, width: 1),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 10,
+            offset: const Offset(2.0, 5.0),
+          ),
+        ]
+      ),
+      padding: const EdgeInsets.all(20),
+      margin: const EdgeInsets.all(30),
       child: Column(
         children: [
-          Image.asset(imagePath, width: 50, height: 50,),
+          Image.asset(imagePath, width: 60, height: 60,),
           const SizedBox(height: 5,),
           Text(title, style: const TextStyle(fontSize: 12),),
         ],
