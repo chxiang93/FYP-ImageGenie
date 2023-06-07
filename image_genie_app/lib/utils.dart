@@ -11,7 +11,7 @@ class ImageGenieAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-  
+
   @override 
   PreferredSizeWidget build(BuildContext context) {
     return AppBar(
@@ -19,18 +19,23 @@ class ImageGenieAppBar extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: Colors.transparent,
         centerTitle: true,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset("assets/logo_blue.png", width: 20, height: 20,),
-            const SizedBox(width: 10,),
+            Image.asset("assets/logo_blue.png", width: 40, height: 40,),
+            const SizedBox(width: 5,),
             Text(
               "ImageGenie",
               style: GoogleFonts.pacifico(
                 color: Colors.white,
-                fontSize: 12
+                fontSize: 20
               )
             )
           ],
         ),
+        actions: const [
+          SizedBox(width: 50,)
+        ],
     );
   }
 }

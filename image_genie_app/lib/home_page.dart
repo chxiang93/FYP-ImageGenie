@@ -21,12 +21,15 @@ class HomePage extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 color: Utils.secondaryColor,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(60),
+                  topRight: Radius.circular(60),
+                ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
+                    color: Colors.white.withOpacity(0.2),
                     blurRadius: 8.0,
-                    offset: const Offset(0.0, 5.0)
+                    offset: const Offset(2.0, 5.0)
                   )
                 ],
               ),
