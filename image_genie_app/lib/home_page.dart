@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
+                    children: const [
                       ImageFunctionCard(imagePath: "assets/sr_icon.png", title: "Super Resolution"),
                       IconFunctionCard(icon: Icons.compare, title: "Neural Style Transfer")
                     ],
@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
+                    children: const [
                       IconFunctionCard(icon: Icons.flutter_dash, title: "Cartoonify"),
                       IconFunctionCard(icon: Icons.draw, title: "Text to Image")
                     ],
@@ -46,10 +46,10 @@ class HomePage extends StatelessWidget {
 }
 
 class IconFunctionCard extends StatelessWidget {
-  IconData icon;
-  String title;
+  final IconData icon;
+  final String title;
 
-  IconFunctionCard({Key? key, required this.icon, required this.title}) : super(key: key);
+  const IconFunctionCard({Key? key, required this.icon, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +71,10 @@ class IconFunctionCard extends StatelessWidget {
 }
 
 class ImageFunctionCard extends StatelessWidget {
-  String imagePath;
-  String title;
+  final String imagePath;
+  final String title;
 
-  ImageFunctionCard({Key? key, required this.imagePath, required this.title}) : super(key: key);
+  const ImageFunctionCard({Key? key, required this.imagePath, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
