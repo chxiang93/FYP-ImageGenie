@@ -7,14 +7,21 @@ class SuperResolutionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Utils.mainColor,
+      backgroundColor: Utils.secondaryColor,
       appBar: const ImageGenieAppBar(),
       drawer: Drawer(),
       body: Column(
-        children: const [
-          ImagePlaceholderCard(),
-          UploadButton(),
-          SubmitButton()
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: const [
+              ImagePlaceholderCard(),
+              UploadButton(),
+            ],
+          ),
+          const SubmitButton()
         ],
       ),
     );
