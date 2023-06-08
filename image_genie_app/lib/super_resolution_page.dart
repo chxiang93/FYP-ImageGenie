@@ -16,7 +16,7 @@ class SuperResolutionPage extends StatelessWidget {
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
+            children: [
               ImagePlaceholderCard(),
               UploadButton(),
             ],

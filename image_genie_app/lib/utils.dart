@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
+import 'dart:io';
+
 
 class Utils {
   static Color mainColor = const Color(0xFF0025AA);
@@ -77,7 +81,39 @@ class ImagePlaceholderCard extends StatelessWidget {
 }
 
 class UploadButton extends StatelessWidget {
-  const UploadButton({Key? key}) : super(key: key);
+  UploadButton({Key? key}) : super(key: key);
+
+  File? selecetdImage;
+  
+  void onUploadImage() async {
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse("http://192.168.56.1:8000/super_resolution/upload/")
+    );
+
+    Map<String, String> headers = {"Content-type": "multipart/form-data"};
+
+    request.files.add(
+      http.MultipartFile(
+        'input_image',
+        selecetdImage!.readAsBytes().asStream(),
+        selecetdImage!.lengthSync(),
+        filename: selecetdImage!.path.split('/').last,
+      ),
+    );
+
+    request.headers.addAll(headers);
+
+    print("request: " + request.toString());
+
+    var res = await request.send();
+
+    http.Response response = await http.Response.fromStream(res);
+  }
+
+  Future getImage() async {
+    var image = await ImagePicker().pickImage(source: ImageSource.gallery);
+  }
 
   @override
   Widget build(BuildContext context) {
