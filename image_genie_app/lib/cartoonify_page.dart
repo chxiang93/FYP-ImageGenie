@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'utils.dart';
+import 'models.dart';
 
 class CartoonifyPage extends StatelessWidget {
-  const CartoonifyPage({Key? key}) : super(key: key);
+  CartoonifyPage({Key? key}) : super(key: key);
+
+  ImageFunctionInfo cartoonifyInfo = ImageFunctionInfo(
+    id: "cartoonify",
+    description: "Please upload a content image to do cartoonify task."
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +23,11 @@ class CartoonifyPage extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              ImagePlaceholderCard(),
+              ImagePlaceholderCard(imgFuncInfo: cartoonifyInfo,),
               UploadButton(),
             ],
           ),
-          const SubmitButton()
+          SubmitButton()
         ],
       ),
     );

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
+import 'models.dart';
 
 
 class Utils {
@@ -46,14 +47,17 @@ class ImageGenieAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class ImagePlaceholderCard extends StatelessWidget {
-  const ImagePlaceholderCard({Key? key}) : super(key: key);
+  final ImageFunctionInfo imgFuncInfo;
+
+  const ImagePlaceholderCard({Key? key, required this.imgFuncInfo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: const EdgeInsets.only(top: 30),
-        width: MediaQuery.of(context).size.width - 100,
+        margin: const EdgeInsets.only(top: 30, left: 30, right: 30),
+        width: (imgFuncInfo.id != "neural_transfer") 
+        ? MediaQuery.of(context).size.width - 100 : 180,
         height: 250,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black, width: 1)
@@ -67,7 +71,7 @@ class ImagePlaceholderCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                "Please upload an image to do super resolution task",
+                imgFuncInfo.description!,
                 softWrap: true,
                 textAlign: TextAlign.justify,
                 style: TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 20),
@@ -81,36 +85,8 @@ class ImagePlaceholderCard extends StatelessWidget {
 }
 
 class UploadButton extends StatelessWidget {
-  UploadButton({Key? key}) : super(key: key);
-
-  File? selecetdImage;
+  const UploadButton({Key? key}) : super(key: key);
   
-  void onUploadImage() async {
-    var request = http.MultipartRequest(
-      'POST',
-      Uri.parse("http://192.168.56.1:8000/super_resolution/upload/")
-    );
-
-    Map<String, String> headers = {"Content-type": "multipart/form-data"};
-
-    request.files.add(
-      http.MultipartFile(
-        'input_image',
-        selecetdImage!.readAsBytes().asStream(),
-        selecetdImage!.lengthSync(),
-        filename: selecetdImage!.path.split('/').last,
-      ),
-    );
-
-    request.headers.addAll(headers);
-
-    print("request: " + request.toString());
-
-    var res = await request.send();
-
-    http.Response response = await http.Response.fromStream(res);
-  }
-
   Future getImage() async {
     var image = await ImagePicker().pickImage(source: ImageSource.gallery);
   }
@@ -157,7 +133,35 @@ class UploadButton extends StatelessWidget {
 }
 
 class SubmitButton extends StatelessWidget {
-  const SubmitButton({Key? key}) : super(key: key);
+  SubmitButton({Key? key}) : super(key: key);
+
+  File? selecetdImage;
+
+  void onUploadImage() async {
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse("http://192.168.56.1:8000/super_resolution/upload/")
+    );
+
+    Map<String, String> headers = {"Content-type": "multipart/form-data"};
+
+    request.files.add(
+      http.MultipartFile(
+        'input_image',
+        selecetdImage!.readAsBytes().asStream(),
+        selecetdImage!.lengthSync(),
+        filename: selecetdImage!.path.split('/').last,
+      ),
+    );
+
+    request.headers.addAll(headers);
+
+    print("request: " + request.toString());
+
+    var res = await request.send();
+
+    http.Response response = await http.Response.fromStream(res);
+  }
 
   @override
   Widget build(BuildContext context) {

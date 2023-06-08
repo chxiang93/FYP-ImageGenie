@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'cartoonify_page.dart';
+import 'neural_transfer_page.dart';
 import 'splash_page.dart';
 import 'home_page.dart';
 import 'super_resolution_page.dart';
@@ -13,9 +14,9 @@ class ImageGenieApp extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        return const MaterialApp(
+        return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: CartoonifyPage()
+            home: NeuralTransferPage()
         );
   }
 }

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'utils.dart';
+import 'models.dart';
 
 class SuperResolutionPage extends StatelessWidget {
-  const SuperResolutionPage({Key? key}) : super(key: key);
+  SuperResolutionPage({Key? key}) : super(key: key);
+
+  ImageFunctionInfo srInfo = ImageFunctionInfo(
+    id: "super_resolution",
+    description: "Please upload an image to do super resolution task."
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +23,11 @@ class SuperResolutionPage extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              ImagePlaceholderCard(),
+              ImagePlaceholderCard(imgFuncInfo: srInfo,),
               UploadButton(),
             ],
           ),
-          const SubmitButton()
+          SubmitButton()
         ],
       ),
     );
