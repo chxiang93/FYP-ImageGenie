@@ -1,0 +1,62 @@
+import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+import 'dart:io';
+import 'models.dart';
+
+class ImageUploadService extends ChangeNotifier {
+
+  String? idFunction;
+  File? selectedInputImage;
+  File? selectedStyleImage;
+
+  void setImageFunctionId(String id) {
+    idFunction = id;
+  }
+
+  void onSelectedInputImage(File img) {
+    selectedInputImage = img;
+    notifyListeners();
+  }
+
+  void onSelectedStyleImage(File img) {
+    selectedInputImage = img;
+    notifyListeners();
+  }
+
+  bool validationSubmitSingleImage() {
+    return !(selectedInputImage == null);
+  }
+
+  bool validationSubmitDoubleImage() {
+    return !((selectedInputImage == null) || (selectedStyleImage == null));
+  }
+
+  void onSubmitSingleImage() async {
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse("http://192.168.56.1:8000/super_resolution/upload/")
+    );
+
+    Map<String, String> headers = {"Content-type": "multipart/form-data"};
+
+    request.files.add(
+      http.MultipartFile(
+        'input_image',
+        selectedInputImage!.readAsBytes().asStream(),
+        selectedInputImage!.lengthSync(),
+        filename: selectedInputImage!.path.split('/').last,
+      ),
+    );
+
+    request.headers.addAll(headers);
+
+    print("request: " + request.toString());
+
+    var res = await request.send();
+
+    http.Response response = await http.Response.fromStream(res);
+
+    print(response);
+  }
+}
