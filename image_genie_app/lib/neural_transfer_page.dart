@@ -39,7 +39,7 @@ class NeuralTransferPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   ImagePlaceholderCard(imgFuncInfo: styleImgInfo,),
-                  UploadButton(),
+                  UploadButtonStyle(),
                 ],
               ),
             ],
