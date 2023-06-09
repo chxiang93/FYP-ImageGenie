@@ -44,7 +44,7 @@ class NeuralTransferPage extends StatelessWidget {
               ),
             ],
           ),
-          SubmitButton()
+          SubmitButtonTwoImage()
         ],
       ),
     );

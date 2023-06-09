@@ -20,7 +20,7 @@ class ImageUploadService extends ChangeNotifier {
   }
 
   void onSelectedStyleImage(File img) {
-    selectedInputImage = img;
+    selectedStyleImage = img;
     notifyListeners();
   }
 
@@ -29,13 +29,13 @@ class ImageUploadService extends ChangeNotifier {
   }
 
   bool validationSubmitDoubleImage() {
-    return !((selectedInputImage == null) || (selectedStyleImage == null));
+    return ((selectedInputImage != null) && (selectedStyleImage != null));
   }
 
   void onSubmitSingleImage() async {
     var request = http.MultipartRequest(
       'POST',
-      Uri.parse("http://192.168.56.1:8000/super_resolution/upload/")
+      Uri.parse("http://192.168.56.1:8000/$idFunction/upload/")
     );
 
     Map<String, String> headers = {"Content-type": "multipart/form-data"};
@@ -46,6 +46,43 @@ class ImageUploadService extends ChangeNotifier {
         selectedInputImage!.readAsBytes().asStream(),
         selectedInputImage!.lengthSync(),
         filename: selectedInputImage!.path.split('/').last,
+      ),
+    );
+
+    request.headers.addAll(headers);
+
+    print("request: " + request.toString());
+
+    var res = await request.send();
+
+    http.Response response = await http.Response.fromStream(res);
+
+    print(response);
+  }
+
+  void onSubmitDoubleImage() async {
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse("http://192.168.56.1:8000/$idFunction/upload/")
+    );
+
+    Map<String, String> headers = {"Content-type": "multipart/form-data"};
+
+    request.files.add(
+      http.MultipartFile(
+        'input_image',
+        selectedInputImage!.readAsBytes().asStream(),
+        selectedInputImage!.lengthSync(),
+        filename: selectedInputImage!.path.split('/').last,
+      ),
+    );
+
+    request.files.add(
+      http.MultipartFile(
+        'style_image',
+        selectedStyleImage!.readAsBytes().asStream(),
+        selectedStyleImage!.lengthSync(),
+        filename: selectedStyleImage!.path.split('/').last,
       ),
     );
 

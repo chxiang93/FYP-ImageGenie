@@ -54,12 +54,15 @@ class ImagePlaceholderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ImageUploadService imgService = Provider.of<ImageUploadService>(context, listen: false);
+    imgService.setImageFunctionId(imgFuncInfo.id!);
+    
     return Center(
       child: Container(
-        margin: const EdgeInsets.only(top: 30, left: 30, right: 30),
+        margin: const EdgeInsets.only(top: 30, left: 20, right: 20),
         width: (imgFuncInfo.id != "neural_transfer") 
-        ? MediaQuery.of(context).size.width - 100 : 180,
-        height: 250,
+        ? MediaQuery.of(context).size.width - 100 : 150,
+        height: 280,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black, width: 1)
         ),
@@ -190,41 +193,99 @@ class SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Material(
-          color: Utils.mainColorLight,
-          child: InkWell(
-            highlightColor: Utils.secondaryColor.withOpacity(0.2),
-            focusColor: Utils.secondaryColor.withOpacity(0.1),
-            onTap: () {
-      
-            },
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-              width: MediaQuery.of(context).size.width - 80,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: Utils.mainColor),
-                boxShadow: [
-                  BoxShadow(
-                    color: Utils.mainColor.withOpacity(0.2),
-                    blurRadius: 8.0,
-                    offset: const Offset(2.0, 5.0)
-                  )
-                ],
-              ),
-              child: const Text(
-                "Submit",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+
+    return Consumer<ImageUploadService>(
+      builder: (context, imgUploadService, child) {
+        return Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Material(
+              color: (imgUploadService.validationSubmitSingleImage()) ?Utils.mainColorLight : Colors.grey,
+              child: InkWell(
+                highlightColor: Utils.secondaryColor.withOpacity(0.2),
+                focusColor: Utils.secondaryColor.withOpacity(0.1),
+                onTap: (imgUploadService.validationSubmitSingleImage()) ? () {
+
+                  imgUploadService.onSubmitSingleImage();
+
+                } : null,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                  width: MediaQuery.of(context).size.width - 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Utils.mainColor),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Utils.mainColor.withOpacity(0.2),
+                        blurRadius: 8.0,
+                        offset: const Offset(2.0, 5.0)
+                      )
+                    ],
+                  ),
+                  child: const Text(
+                    "Submit",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
+    );
+  }
+}
+
+class SubmitButtonTwoImage extends StatelessWidget {
+  SubmitButtonTwoImage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Consumer<ImageUploadService>(
+      builder: (context, imgUploadService, child) {
+        return Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Material(
+              color: (imgUploadService.validationSubmitDoubleImage()) ? Utils.mainColorLight : Colors.grey,
+              child: InkWell(
+                highlightColor: Utils.secondaryColor.withOpacity(0.2),
+                focusColor: Utils.secondaryColor.withOpacity(0.1),
+                onTap: (imgUploadService.validationSubmitDoubleImage()) ? () {
+
+                  imgUploadService.onSubmitDoubleImage();
+
+                } : null,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                  width: MediaQuery.of(context).size.width - 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Utils.mainColor),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Utils.mainColor.withOpacity(0.2),
+                        blurRadius: 8.0,
+                        offset: const Offset(2.0, 5.0)
+                      )
+                    ],
+                  ),
+                  child: const Text(
+                    "Submit",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
