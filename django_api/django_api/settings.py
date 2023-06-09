@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-cgpcmu_6au36a1#bcji9k3mi81ep2ytm*=#zr%i8m4=sk!m36#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["192.168.56.1", "192.168.8.110", "*"]
 
 
 # Application definition
@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'cartoonify_api.apps.CartoonifyApiConfig',
+    'neural_transfer_api.apps.NeuralTransferApiConfig',
+    'super_resolution_api.apps.SuperResolutionApiConfig',
+    'stable_diffusion_api.apps.StableDiffusionApiConfig',
 ]
 
 MIDDLEWARE = [
