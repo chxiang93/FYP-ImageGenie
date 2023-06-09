@@ -7,7 +7,7 @@ class CartoonifyPage extends StatelessWidget {
 
   ImageFunctionInfo cartoonifyInfo = ImageFunctionInfo(
     id: "cartoonify",
-    description: "Please upload a content image to do cartoonify task."
+    description: "Please upload an image to do cartoonify task."
   );
 
   @override
