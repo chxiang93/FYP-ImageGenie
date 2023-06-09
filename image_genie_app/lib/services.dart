@@ -19,9 +19,25 @@ class ImageUploadService extends ChangeNotifier {
     notifyListeners();
   }
 
+  File? getSelectedInputImage() {
+    return selectedInputImage;
+  }
+
+  File? getSelectedStyleImage() {
+    return selectedStyleImage;
+  }
+
   void onSelectedStyleImage(File img) {
     selectedStyleImage = img;
     notifyListeners();
+  }
+
+  bool validationInputImage() {
+    return !(selectedInputImage == null);
+  }
+
+  bool validationStyleImage() {
+    return !(selectedStyleImage == null);
   }
 
   bool validationSubmitSingleImage() {
