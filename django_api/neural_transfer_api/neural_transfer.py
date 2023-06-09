@@ -1,5 +1,6 @@
 import os 
 import tensorflow as tf
+import tensorflow_hub as hub
 # Load compressed models from tensorflow_hub
 os.environ["TFHUB_MODEL_LOAD_FORMAT"] = "COMPRESSED"
 
@@ -48,8 +49,9 @@ def neural_transfer(input_img, style_img):
     input_img = load_img(input_img)
     style_img = load_img(style_img)
 
-    import tensorflow_hub as hub
-    hub_model = hub.load('neural_transfer_model')
+    path = os.path.dirname(os.path.realpath(__file__))
+    model_path = os.path.join(path, "neural_transfer_model")
+    hub_model = hub.load(model_path)
     stylized_image = hub_model(tf.constant(input_img), tf.constant(style_img))[0]
     transfer_image = tensor_to_image(stylized_image)
 
