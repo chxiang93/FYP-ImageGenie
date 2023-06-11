@@ -25,7 +25,7 @@ class ImageGenieApp extends StatelessWidget {
     Widget build(BuildContext context) {
         return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: NeuralTransferPage()
+            home: SplashPage()
         );
   }
 }
