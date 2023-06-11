@@ -9,6 +9,7 @@ class ImageUploadService extends ChangeNotifier {
   String? idFunction;
   File? selectedInputImage;
   File? selectedStyleImage;
+  var outputImage;
 
   void setImageFunctionId(String id) {
     idFunction = id;
@@ -25,6 +26,10 @@ class ImageUploadService extends ChangeNotifier {
 
   File? getSelectedStyleImage() {
     return selectedStyleImage;
+  }
+
+  Image getOutputImage() {
+    return outputImage;
   }
 
   void onSelectedStyleImage(File img) {
@@ -73,7 +78,9 @@ class ImageUploadService extends ChangeNotifier {
 
     http.Response response = await http.Response.fromStream(res);
 
-    print(response);
+    outputImage = Image.memory(response.bodyBytes);
+
+    notifyListeners();
   }
 
   void onSubmitDoubleImage() async {
@@ -110,6 +117,14 @@ class ImageUploadService extends ChangeNotifier {
 
     http.Response response = await http.Response.fromStream(res);
 
-    print(response);
+    outputImage = Image.memory(response.bodyBytes);
+
+    notifyListeners();
+  }
+
+  void clearImage() {
+    selectedInputImage = null;
+    selectedStyleImage = null;
+    outputImage = null;
   }
 }
