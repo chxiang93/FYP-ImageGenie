@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'models.dart';
 import 'services.dart';
+import 'result_page.dart';
 
 class Utils {
   static Color mainColor = const Color(0xFF0025AA);
@@ -273,6 +274,9 @@ class SubmitButton extends StatelessWidget {
                 onTap: (imgUploadService.validationSubmitSingleImage()) ? () {
 
                   imgUploadService.onSubmitSingleImage();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: ((context) => ResultPage()))
+                  );
 
                 } : null,
                 child: Container(
@@ -324,6 +328,10 @@ class SubmitButtonTwoImage extends StatelessWidget {
                 onTap: (imgUploadService.validationSubmitDoubleImage()) ? () {
 
                   imgUploadService.onSubmitDoubleImage();
+
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: ((context) => ResultPage()))
+                  );
 
                 } : null,
                 child: Container(
