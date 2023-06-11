@@ -20,7 +20,6 @@ class NeuralTransferPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Utils.secondaryColor,
       appBar: const ImageGenieAppBar(),
-      drawer: Drawer(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'services.dart';
 import 'utils.dart';
 import 'models.dart';
 
@@ -15,7 +17,6 @@ class SuperResolutionPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Utils.secondaryColor,
       appBar: const ImageGenieAppBar(),
-      drawer: Drawer(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
