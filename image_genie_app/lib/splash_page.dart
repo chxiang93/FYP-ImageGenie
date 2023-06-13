@@ -8,7 +8,7 @@ class SplashPage extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         Future.delayed(const Duration(seconds: 2), () {
-            Navigator.of(context).push(
+            Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: ((context) => const HomePage()))
             );
         });
