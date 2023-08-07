@@ -50,8 +50,8 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         ImageFunctionCard(
@@ -79,30 +79,30 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Expanded(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        IconFunctionCard(
-                          icon: Icons.flutter_dash, 
-                          title: "Cartoonify",
-                          function: () {
+                  // Expanded(
+                  //   child: Row(
+                  //     crossAxisAlignment: CrossAxisAlignment.center,
+                  //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //     children: [
+                  //       IconFunctionCard(
+                  //         icon: Icons.flutter_dash, 
+                  //         title: "Cartoonify",
+                  //         function: () {
 
-                            imgService.clearImage();
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: ((context) => CartoonifyPage()))
-                            );
-                          },
-                          ),
-                        IconFunctionCard(
-                          icon: Icons.draw, 
-                          title: "Text to Image",
-                          function: () {},
-                          )
-                      ],
-                    ),
-                  ),
+                  //           imgService.clearImage();
+                  //           Navigator.of(context).push(
+                  //             MaterialPageRoute(builder: ((context) => CartoonifyPage()))
+                  //           );
+                  //         },
+                  //         ),
+                  //       IconFunctionCard(
+                  //         icon: Icons.draw, 
+                  //         title: "Text to Image",
+                  //         function: () {},
+                  //         )
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -123,7 +123,7 @@ class IconFunctionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -157,11 +157,11 @@ class IconFunctionCard extends StatelessWidget {
                 children: [
                   Icon(
                     icon,
-                    size: 80,
+                    size: 100,
                     color: Colors.black,
                   ),
                   const SizedBox(height: 5,),
-                  Text(title, style: const TextStyle(fontSize: 12),),
+                  Text(title, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
                 ],
               ),
             ),
@@ -182,7 +182,7 @@ class ImageFunctionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -214,9 +214,9 @@ class ImageFunctionCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(imagePath, width: 80, height: 80,),
+                  Image.asset(imagePath, width: 100, height: 100,),
                   const SizedBox(height: 5,),
-                  Text(title, style: const TextStyle(fontSize: 12),),
+                  Text(title, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
                 ],
               ),
             ),
