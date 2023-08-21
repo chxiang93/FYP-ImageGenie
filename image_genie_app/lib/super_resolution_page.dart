@@ -17,19 +17,22 @@ class SuperResolutionPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Utils.secondaryColor,
       appBar: const ImageGenieAppBar(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              ImagePlaceholderCard(imgFuncInfo: srInfo,),
-              UploadButton(),
-            ],
-          ),
-          SubmitButton()
-        ],
+      body: Hero(
+        tag: "super_resolution",
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                ImagePlaceholderCard(imgFuncInfo: srInfo,),
+                UploadButton(),
+              ],
+            ),
+            SubmitButton()
+          ],
+        ),
       ),
     );
   }

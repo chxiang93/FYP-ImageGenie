@@ -22,11 +22,12 @@ class HomePage extends StatelessWidget {
         children: [
           Container(
             height: 150,
-            padding: const EdgeInsets.all(10),
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.only(left: 30),
             child: const Text(
-              "Dashboard", 
-              textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 16, color: Colors.white),
+                "Home Page", 
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 46, color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(
@@ -54,28 +55,34 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        ImageFunctionCard(
-                          imagePath: "assets/sr_icon.png", 
-                          title: "Super Resolution",
-                          function: () {
-
-                            imgService.clearImage();
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: ((context) => SuperResolutionPage()))
-                            );
-                          },
-                          ),
-                        IconFunctionCard(
-                          icon: Icons.compare, 
-                          title: "Neural Style Transfer",
-                          function: () {
-
-                            imgService.clearImage();
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: ((context) => NeuralTransferPage()))
-                            );
-                          },
-                          )
+                        Hero(
+                          tag: "super_resolution",
+                          child: ImageFunctionCard(
+                            imagePath: "assets/sr_icon.png", 
+                            title: "Super Resolution",
+                            function: () {
+                        
+                              imgService.clearImage();
+                              Navigator.of(context).push(
+                                MaterialPageRoute(builder: ((context) => SuperResolutionPage()))
+                              );
+                            },
+                            ),
+                        ),
+                        Hero(
+                          tag: "neural_transfer",
+                          child: IconFunctionCard(
+                            icon: Icons.compare, 
+                            title: "Neural Style Transfer",
+                            function: () {
+                        
+                              imgService.clearImage();
+                              Navigator.of(context).push(
+                                MaterialPageRoute(builder: ((context) => NeuralTransferPage()))
+                              );
+                            },
+                            ),
+                        )
                       ],
                     ),
                   ),

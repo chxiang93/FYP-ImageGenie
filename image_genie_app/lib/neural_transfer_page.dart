@@ -20,31 +20,34 @@ class NeuralTransferPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Utils.secondaryColor,
       appBar: const ImageGenieAppBar(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  ImagePlaceholderCard(imgFuncInfo: contentImgInfo,),
-                  UploadButton(),
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  StyleImagePlaceholderCard(imgFuncInfo: styleImgInfo,),
-                  UploadButtonStyle(),
-                ],
-              ),
-            ],
-          ),
-          SubmitButtonTwoImage()
-        ],
+      body: Hero(
+        tag: "neural_transfer",
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ImagePlaceholderCard(imgFuncInfo: contentImgInfo,),
+                    UploadButton(),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    StyleImagePlaceholderCard(imgFuncInfo: styleImgInfo,),
+                    UploadButtonStyle(),
+                  ],
+                ),
+              ],
+            ),
+            SubmitButtonTwoImage()
+          ],
+        ),
       ),
     );
   }
