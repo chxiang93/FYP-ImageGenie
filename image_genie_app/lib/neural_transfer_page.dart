@@ -22,6 +22,15 @@ class NeuralTransferPage extends StatelessWidget {
       appBar: const ImageGenieAppBar(),
       body: Hero(
         tag: "neural_transfer",
+        flightShuttleBuilder: (BuildContext flightContext, 
+                               Animation<double> animation, 
+                               HeroFlightDirection flightDirection, 
+                               BuildContext fromHeroContext, 
+                               BuildContext toHeroContext) {
+          return SingleChildScrollView(
+            child: fromHeroContext.widget,
+          );
+        },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,

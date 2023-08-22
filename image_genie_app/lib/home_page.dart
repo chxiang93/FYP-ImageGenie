@@ -16,18 +16,20 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF0025AA),
       appBar: const ImageGenieAppBar(),
-      drawer: Drawer(),
+      drawer: Drawer(
+        backgroundColor: Utils.mainColor,
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             height: 150,
             alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.only(left: 30),
+            padding: const EdgeInsets.only(left: 20),
             child: const Text(
                 "Home Page", 
                 textAlign: TextAlign.left,
-                style: TextStyle(fontSize: 46, color: Colors.white, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 36, color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(
@@ -57,6 +59,15 @@ class HomePage extends StatelessWidget {
                       children: [
                         Hero(
                           tag: "super_resolution",
+                          flightShuttleBuilder: (BuildContext flightContext,
+                                Animation<double> animation,
+                                HeroFlightDirection flightDirection,
+                                BuildContext fromHeroContext,
+                                BuildContext toHeroContext,){
+
+                              return SingleChildScrollView(
+                                child: toHeroContext.widget,
+                          );},
                           child: ImageFunctionCard(
                             imagePath: "assets/sr_icon.png", 
                             title: "Super Resolution",
@@ -71,6 +82,11 @@ class HomePage extends StatelessWidget {
                         ),
                         Hero(
                           tag: "neural_transfer",
+                          flightShuttleBuilder: (flightContext, animation, flightDirection, fromHeroContext, toHeroContext) {
+                            return SingleChildScrollView(
+                              child: toHeroContext.widget,
+                            );
+                          },
                           child: IconFunctionCard(
                             icon: Icons.compare, 
                             title: "Neural Style Transfer",

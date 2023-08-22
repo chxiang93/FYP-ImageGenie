@@ -19,6 +19,15 @@ class SuperResolutionPage extends StatelessWidget {
       appBar: const ImageGenieAppBar(),
       body: Hero(
         tag: "super_resolution",
+        flightShuttleBuilder: (BuildContext flightContext,
+                                Animation<double> animation,
+                                HeroFlightDirection flightDirection,
+                                BuildContext fromHeroContext,
+                                BuildContext toHeroContext,){
+
+              return SingleChildScrollView(
+                child: fromHeroContext.widget,
+          );},
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
