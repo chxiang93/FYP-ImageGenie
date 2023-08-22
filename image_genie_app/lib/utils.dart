@@ -30,19 +30,19 @@ class ImageGenieAppBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset("assets/logo_blue.png", width: 40, height: 40,),
+            Image.asset("assets/logo_blue.png", width: 50, height: 50,),
             const SizedBox(width: 5,),
             Text(
               "ImageGenie",
               style: GoogleFonts.pacifico(
                 color: Colors.white,
-                fontSize: 20
+                fontSize: 27
               )
             )
           ],
         ),
         actions: const [
-          SizedBox(width: 50,)
+          SizedBox(width: 53,)
         ],
     );
   }
