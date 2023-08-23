@@ -3,6 +3,7 @@ import tensorflow as tf
 import tensorflow_hub as hub
 # Load compressed models from tensorflow_hub
 os.environ["TFHUB_MODEL_LOAD_FORMAT"] = "COMPRESSED"
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 import matplotlib.pyplot as plt
 import matplotlib
