@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
@@ -6,13 +8,17 @@ import 'models.dart';
 
 class ImageUploadService extends ChangeNotifier {
 
-  String? idFunction;
+  String? _idFunction;
   File? selectedInputImage;
   File? selectedStyleImage;
-  var outputImage;
+  Image? outputImage;
 
   void setImageFunctionId(String id) {
-    idFunction = id;
+    _idFunction = id;
+  }
+
+  String getIdFunction() {
+    return _idFunction!;
   }
 
   void onSelectedInputImage(File img) {
@@ -29,7 +35,7 @@ class ImageUploadService extends ChangeNotifier {
   }
 
   Image getOutputImage() {
-    return outputImage;
+    return outputImage!;
   }
 
   void onSelectedStyleImage(File img) {
@@ -53,10 +59,13 @@ class ImageUploadService extends ChangeNotifier {
     return ((selectedInputImage != null) && (selectedStyleImage != null));
   }
 
-  void onSubmitSingleImage() async {
+  Future<bool> onSubmitSingleImage() async {
+
+    Completer<bool> imgCompleter = Completer();
+
     var request = http.MultipartRequest(
       'POST',
-      Uri.parse("http://192.168.56.1:8000/$idFunction/upload/")
+      Uri.parse("http://192.168.56.1:8000/$_idFunction/upload/")
     );
 
     Map<String, String> headers = {"Content-type": "multipart/form-data"};
@@ -80,13 +89,21 @@ class ImageUploadService extends ChangeNotifier {
 
     outputImage = Image.memory(response.bodyBytes);
 
-    notifyListeners();
+    Future.delayed(const Duration(seconds: 1), () {
+        imgCompleter.complete(true);
+
+        notifyListeners();
+    });
+    
+    return imgCompleter.future;
   }
 
-  void onSubmitDoubleImage() async {
+  Future<bool> onSubmitDoubleImage() async {
+    Completer<bool> imgCompleter = Completer();
+
     var request = http.MultipartRequest(
       'POST',
-      Uri.parse("http://192.168.56.1:8000/$idFunction/upload/")
+      Uri.parse("http://192.168.56.1:8000/$_idFunction/upload/")
     );
 
     Map<String, String> headers = {"Content-type": "multipart/form-data"};
@@ -119,7 +136,12 @@ class ImageUploadService extends ChangeNotifier {
 
     outputImage = Image.memory(response.bodyBytes);
 
-    notifyListeners();
+    Future.delayed(const Duration(seconds: 1), () {
+      imgCompleter.complete(true);
+      notifyListeners();
+    });
+
+    return imgCompleter.future;
   }
 
   void clearImage() {

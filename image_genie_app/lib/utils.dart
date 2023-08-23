@@ -272,8 +272,6 @@ class SubmitButton extends StatelessWidget {
                 highlightColor: Utils.secondaryColor.withOpacity(0.2),
                 focusColor: Utils.secondaryColor.withOpacity(0.1),
                 onTap: (imgUploadService.validationSubmitSingleImage()) ? () {
-
-                  imgUploadService.onSubmitSingleImage();
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: ((context) => ResultPage()))
                   );
@@ -359,6 +357,37 @@ class SubmitButtonTwoImage extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SizedBox(
+        width: 80,
+        height: 80,
+        child: Stack(
+          children: [
+            Center(
+              child: SizedBox(
+                width: 80,
+                height: 80,
+                child: CircularProgressIndicator(
+                  strokeWidth: 8.0,
+                  valueColor: AlwaysStoppedAnimation(Utils.mainColor),
+                ),
+              ),
+            ),
+            Center(
+              child: Image.asset("assets/logo_blue.png", width: 40, height: 40,),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
