@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:gallery_saver/gallery_saver.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'dart:io';
+import 'super_resolution_page.dart';
+import 'neural_transfer_page.dart';
 import 'utils.dart';
 import 'services.dart';
 
@@ -30,7 +31,21 @@ class _ResultPageState extends State<ResultPage> {
 
     return WillPopScope(
       onWillPop: () async {
-        //imgService.clearImage();
+        imgService.clearImage();
+
+        if(imgService.getIdFunction() == "super_resolution") {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => SuperResolutionPage()
+            )
+          );
+        }
+        else if(imgService.getIdFunction() == "neural_transfer") {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => NeuralTransferPage() )
+          );
+        }
+
         return true;
       },
       child: Scaffold( 

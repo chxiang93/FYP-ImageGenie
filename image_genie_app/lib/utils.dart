@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'models.dart';
 import 'services.dart';
@@ -272,7 +271,7 @@ class SubmitButton extends StatelessWidget {
                 highlightColor: Utils.secondaryColor.withOpacity(0.2),
                 focusColor: Utils.secondaryColor.withOpacity(0.1),
                 onTap: (imgUploadService.validationSubmitSingleImage()) ? () {
-                  Navigator.of(context).push(
+                  Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: ((context) => ResultPage()))
                   );
 
@@ -327,7 +326,7 @@ class SubmitButtonTwoImage extends StatelessWidget {
 
                   imgUploadService.onSubmitDoubleImage();
 
-                  Navigator.of(context).push(
+                  Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: ((context) => ResultPage()))
                   );
 
