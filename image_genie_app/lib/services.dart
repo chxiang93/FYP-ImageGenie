@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
+import 'dart:typed_data';
 import 'models.dart';
 
 class ImageUploadService extends ChangeNotifier {
@@ -12,6 +14,7 @@ class ImageUploadService extends ChangeNotifier {
   File? selectedInputImage;
   File? selectedStyleImage;
   Image? outputImage;
+  File? outputImageFile;
 
   void setImageFunctionId(String id) {
     _idFunction = id;
@@ -36,6 +39,10 @@ class ImageUploadService extends ChangeNotifier {
 
   Image getOutputImage() {
     return outputImage!;
+  }
+
+  File getOutputImageFile() {
+    return outputImageFile!;
   }
 
   void onSelectedStyleImage(File img) {
@@ -89,6 +96,18 @@ class ImageUploadService extends ChangeNotifier {
 
     outputImage = Image.memory(response.bodyBytes);
 
+    // Get temporary directory
+    final dir = await getTemporaryDirectory();
+
+    // Create an image name
+    var filename = '${dir.path}/image.png';
+
+    // Save to filesystem
+    final file = File(filename);
+    await file.writeAsBytes(response.bodyBytes);
+
+    outputImageFile = file;
+  
     Future.delayed(const Duration(seconds: 1), () {
         imgCompleter.complete(true);
 

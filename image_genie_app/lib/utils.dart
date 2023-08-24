@@ -178,7 +178,7 @@ class UploadButton extends StatelessWidget {
 
             },
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               width: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -194,7 +194,7 @@ class UploadButton extends StatelessWidget {
               child: const Text(
                 "Upload",
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
           ),
@@ -228,7 +228,7 @@ class UploadButtonStyle extends StatelessWidget {
 
             },
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               width: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -244,7 +244,7 @@ class UploadButtonStyle extends StatelessWidget {
               child: const Text(
                 "Upload",
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
           ),
@@ -278,7 +278,7 @@ class SubmitButton extends StatelessWidget {
 
                 } : null,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
                   width: MediaQuery.of(context).size.width - 80,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -294,7 +294,7 @@ class SubmitButton extends StatelessWidget {
                   child: const Text(
                     "Submit",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
               ),
@@ -333,7 +333,7 @@ class SubmitButtonTwoImage extends StatelessWidget {
 
                 } : null,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
                   width: MediaQuery.of(context).size.width - 80,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -349,7 +349,7 @@ class SubmitButtonTwoImage extends StatelessWidget {
                   child: const Text(
                     "Submit",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
               ),
@@ -367,7 +367,7 @@ class LoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SizedBox(
+      child: Container(
         width: 80,
         height: 80,
         child: Stack(
@@ -383,7 +383,7 @@ class LoadingWidget extends StatelessWidget {
               ),
             ),
             Center(
-              child: Image.asset("assets/logo_blue.png", width: 40, height: 40,),
+              child: Image.asset("assets/logo_black.png", width: 40, height: 40,),
             ),
           ],
         ),
