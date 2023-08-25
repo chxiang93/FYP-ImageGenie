@@ -53,6 +53,23 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo_blue.png"
+  web:
+    generate: true
+    image_path: "assets/logo_blue.png"
+    background_color: "#FFFFFF"
+    theme_color: "#0025AA"
+  windows:
+    generate: true
+    image_path: "assets/logo_blue.png"
+    icon_size: 48
+  macos:
+    generate: true
+    image_path: "assets/logo_blue.png"
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
