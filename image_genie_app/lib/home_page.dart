@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:image_genie_app/services.dart';
 import 'package:provider/provider.dart';
-import 'utils.dart';
+import 'utils/utils.dart';
 import 'super_resolution_page.dart';
 import 'neural_transfer_page.dart';
-import 'cartoonify_page.dart';
+import 'services.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

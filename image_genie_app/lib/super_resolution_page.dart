@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'services.dart';
-import 'utils.dart';
+import 'utils/utils.dart';
 import 'models.dart';
 
 class SuperResolutionPage extends StatelessWidget {

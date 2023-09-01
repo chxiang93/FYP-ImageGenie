@@ -5,7 +5,7 @@ import 'package:share_plus/share_plus.dart';
 import 'dart:io';
 import 'super_resolution_page.dart';
 import 'neural_transfer_page.dart';
-import 'utils.dart';
+import 'utils/utils.dart';
 import 'services.dart';
 
 class ResultPage extends StatefulWidget {
@@ -68,6 +68,11 @@ class _ResultPageState extends State<ResultPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      const Text(
+                        "Result Page:",
+                        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
+                      ),
+                      const SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Container(

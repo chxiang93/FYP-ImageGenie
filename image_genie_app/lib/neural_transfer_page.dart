@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'utils.dart';
+import 'utils/utils.dart';
 import 'models.dart';
 
 class NeuralTransferPage extends StatelessWidget {
