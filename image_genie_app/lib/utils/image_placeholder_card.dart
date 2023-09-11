@@ -26,7 +26,7 @@ class ImagePlaceholderCard extends StatelessWidget {
               ( imgUploadService.validationInputImage() )
                 ? DecorationImage(
                   image: FileImage(imgUploadService.getSelectedInputImage()!),
-                  fit: BoxFit.cover) 
+                  fit: BoxFit.fill) 
                 : null,
             ),
             child: 
@@ -80,7 +80,7 @@ class StyleImagePlaceholderCard extends StatelessWidget {
               ( imgUploadService.validationStyleImage() )
               ? DecorationImage(
                 image: FileImage(imgUploadService.getSelectedStyleImage()!),
-                fit: BoxFit.cover) 
+                fit: BoxFit.fill) 
               : null
             ),
             child: 

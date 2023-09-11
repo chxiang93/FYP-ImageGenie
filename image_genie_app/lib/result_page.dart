@@ -63,28 +63,63 @@ class _ResultPageState extends State<ResultPage> {
                 if(snapshot.hasError) {
                   return const Text("Error!", textAlign: TextAlign.center, style: TextStyle(fontSize: 60, color: Colors.red, fontWeight: FontWeight.bold),);
                 }
-    
-                return Center(
+
+                if(imgUploadService.getIdFunction() == "super_resolution") {
+                  return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
                         "Result Page:",
-                        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
+                        style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.black),
+                        textAlign: TextAlign.left,
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 40),
+                      const Text(
+                        "Before image super resolution:",
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+                        textAlign: TextAlign.left,
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
                           decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 1.0)
+                            border: Border.all(color: Colors.black, width: 1.0),
+                            image: DecorationImage(
+                              image: FileImage(imgUploadService.getSelectedInputImage()!),
+                              fit: BoxFit.fill
+                            ),
                           ),
-                          width: imgUploadService.outputImage!.width,
-                          height: imgUploadService.outputImage!.height,
-                          child: imgUploadService.outputImage
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width - 30,
+                            height: 230,
+                          ),
                         ),
                       ),
-                      const SizedBox(height: 30,),
+                      const Text(
+                        "After image super resolution:",
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+                        textAlign: TextAlign.left,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
+                          // width: imgUploadService.outputImage!.width,
+                          // height: imgUploadService.outputImage!.height,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black, width: 1.0),
+                            image: DecorationImage(
+                              image: FileImage(imgUploadService.getOutputImageFile()),
+                              fit: BoxFit.fill
+                            ),
+                          ),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width - 30,
+                            height: 230,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -136,7 +171,86 @@ class _ResultPageState extends State<ResultPage> {
                       )
                     ],
                   ),
-            );
+                );
+                }
+                else if(imgUploadService.getIdFunction() == "neural_transfer") {
+                  return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Result Page:",
+                        style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.black),
+                        textAlign: TextAlign.left,
+                      ),
+                      const SizedBox(height: 50),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black, width: 1.0)
+                          ),
+                          width: imgUploadService.outputImage!.width,
+                          height: imgUploadService.outputImage!.height,
+                          child: imgUploadService.outputImage
+                        ),
+                      ),
+                      const SizedBox(height: 20,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton.icon(
+                            onPressed: () async {
+                              XFile file = XFile(imgUploadService.getOutputImageFile().path);
+                              await Share.shareXFiles([file], text: "Check out my new image!");
+                            },
+                            icon: Icon(
+                              Icons.share,
+                              color: Utils.secondaryColor,
+                              size: 25,
+                            ),
+                            label: const Text("Share"),
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                              elevation: 5,
+                              primary: Utils.mainColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              shadowColor: Utils.mainColor.withOpacity(0.1),
+                              textStyle: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              _saveImage(context, imgUploadService.getOutputImageFile());
+                            },
+                            icon: Icon(
+                              Icons.save,
+                              color: Utils.secondaryColor,
+                              size: 27,
+                            ),
+                            label: const Text("Download"),
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                              elevation: 5,
+                              primary: Utils.mainColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              shadowColor: Utils.mainColor.withOpacity(0.1),
+                              textStyle: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  );
+                }
+                
+                return Container();
               },
             );
           },
