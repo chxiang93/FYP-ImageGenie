@@ -8,3 +8,6 @@ opencv-contrib-python==4.7.0.72
 Pillow==9.1.1
 Django==4.1
 djangorestframework==3.14.0
+tensorflow==2.9.2
+tensorflow-hub==0.13.0
+matplotlib==3.5.2

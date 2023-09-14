@@ -1,25 +1,34 @@
 import 'package:flutter/material.dart';
-import 'utils.dart';
+import 'package:provider/provider.dart';
+import 'utils/utils.dart';
+import 'super_resolution_page.dart';
+import 'neural_transfer_page.dart';
+import 'services.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override 
   Widget build(BuildContext context) {
+    ImageUploadService imgService = Provider.of<ImageUploadService>(context, listen: false);
+
     return Scaffold(
       backgroundColor: const Color(0xFF0025AA),
       appBar: const ImageGenieAppBar(),
-      drawer: Drawer(),
+      drawer: Drawer(
+        backgroundColor: Utils.mainColor,
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 120,
-            padding: const EdgeInsets.all(10),
+            height: 150,
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.only(left: 20),
             child: const Text(
-              "Dashboard", 
-              textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 16, color: Colors.white),
+                "Home Page", 
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 36, color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(
@@ -43,25 +52,79 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: const [
-                        ImageFunctionCard(imagePath: "assets/sr_icon.png", title: "Super Resolution"),
-                        IconFunctionCard(icon: Icons.compare, title: "Neural Style Transfer")
+                      children: [
+                        Hero(
+                          tag: "super_resolution",
+                          flightShuttleBuilder: (BuildContext flightContext,
+                                Animation<double> animation,
+                                HeroFlightDirection flightDirection,
+                                BuildContext fromHeroContext,
+                                BuildContext toHeroContext,){
+
+                              return SingleChildScrollView(
+                                child: toHeroContext.widget,
+                          );},
+                          child: ImageFunctionCard(
+                            imagePath: "assets/sr_icon.png", 
+                            title: "Super Resolution",
+                            function: () {
+                        
+                              imgService.clearImage();
+                              Navigator.of(context).push(
+                                MaterialPageRoute(builder: ((context) => SuperResolutionPage()))
+                              );
+                            },
+                            ),
+                        ),
+                        Hero(
+                          tag: "neural_transfer",
+                          flightShuttleBuilder: (flightContext, animation, flightDirection, fromHeroContext, toHeroContext) {
+                            return SingleChildScrollView(
+                              child: toHeroContext.widget,
+                            );
+                          },
+                          child: IconFunctionCard(
+                            icon: Icons.compare, 
+                            title: "Neural Style Transfer",
+                            function: () {
+                        
+                              imgService.clearImage();
+                              Navigator.of(context).push(
+                                MaterialPageRoute(builder: ((context) => NeuralTransferPage()))
+                              );
+                            },
+                            ),
+                        )
                       ],
                     ),
                   ),
-                  Expanded(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: const [
-                        IconFunctionCard(icon: Icons.flutter_dash, title: "Cartoonify"),
-                        IconFunctionCard(icon: Icons.draw, title: "Text to Image")
-                      ],
-                    ),
-                  ),
+                  // Expanded(
+                  //   child: Row(
+                  //     crossAxisAlignment: CrossAxisAlignment.center,
+                  //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //     children: [
+                  //       IconFunctionCard(
+                  //         icon: Icons.flutter_dash, 
+                  //         title: "Cartoonify",
+                  //         function: () {
+
+                  //           imgService.clearImage();
+                  //           Navigator.of(context).push(
+                  //             MaterialPageRoute(builder: ((context) => CartoonifyPage()))
+                  //           );
+                  //         },
+                  //         ),
+                  //       IconFunctionCard(
+                  //         icon: Icons.draw, 
+                  //         title: "Text to Image",
+                  //         function: () {},
+                  //         )
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -75,13 +138,14 @@ class HomePage extends StatelessWidget {
 class IconFunctionCard extends StatelessWidget {
   final IconData icon;
   final String title;
+  final Function? function;
 
-  const IconFunctionCard({Key? key, required this.icon, required this.title}) : super(key: key);
+  const IconFunctionCard({Key? key, required this.icon, required this.title, required this.function}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(30),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -99,10 +163,11 @@ class IconFunctionCard extends StatelessWidget {
             highlightColor: Colors.black.withOpacity(0.2),
             focusColor: Colors.grey.withOpacity(0.1),
             onTap: () {
-              
+              function!();
             },
             child: Container(
-              width: (MediaQuery.of(context).size.width / 2.0) - 110,
+              height: 200,
+              width: (MediaQuery.of(context).size.width / 2.0) - 30,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 1),
                 borderRadius: BorderRadius.circular(20),
@@ -114,11 +179,11 @@ class IconFunctionCard extends StatelessWidget {
                 children: [
                   Icon(
                     icon,
-                    size: 80,
+                    size: 100,
                     color: Colors.black,
                   ),
                   const SizedBox(height: 5,),
-                  Text(title, style: const TextStyle(fontSize: 12),),
+                  Text(title, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
                 ],
               ),
             ),
@@ -132,13 +197,14 @@ class IconFunctionCard extends StatelessWidget {
 class ImageFunctionCard extends StatelessWidget {
   final String imagePath;
   final String title;
+  final Function? function;
 
-  const ImageFunctionCard({Key? key, required this.imagePath, required this.title}) : super(key: key);
+  const ImageFunctionCard({Key? key, required this.imagePath, required this.title, required this.function}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(30),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -156,10 +222,11 @@ class ImageFunctionCard extends StatelessWidget {
             highlightColor: Colors.black.withOpacity(0.2),
             focusColor: Colors.grey.withOpacity(0.1),
             onTap: () {
-              
+              function!();
             },
             child: Container(
-              width: (MediaQuery.of(context).size.width / 2.0) - 110,
+              height: 200,
+              width: (MediaQuery.of(context).size.width / 2.0) - 30,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 1),
                 borderRadius: BorderRadius.circular(20),
@@ -169,9 +236,9 @@ class ImageFunctionCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(imagePath, width: 80, height: 80,),
+                  Image.asset(imagePath, width: 100, height: 100,),
                   const SizedBox(height: 5,),
-                  Text(title, style: const TextStyle(fontSize: 12),),
+                  Text(title, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
                 ],
               ),
             ),

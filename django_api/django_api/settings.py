@@ -38,10 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'cartoonify_api.apps.CartoonifyApiConfig',
     'neural_transfer_api.apps.NeuralTransferApiConfig',
     'super_resolution_api.apps.SuperResolutionApiConfig',
-    'stable_diffusion_api.apps.StableDiffusionApiConfig',
 ]
 
 MIDDLEWARE = [
