@@ -25,7 +25,7 @@ The system architecture is shown in Figure above where the frontend part is deve
 
 # Performance of Deep Learning Models
 
-![poster result ai](assets/performance.jpg)
+![poster result ai](Assets/performance.jpg)
 
 # Results
 
