@@ -59,15 +59,15 @@ The system architecture is shown in Figure above where the frontend part is deve
 
 - You need to have python version 3.10.4 installed in ur computer. If not, can download from  https://www.python.org/downloads/release/python-3104/
 
-The steps to construct the backend environment are listed below:
+### The steps to construct the backend environment are listed below:
 1. Firstly, the user need to clone the source code of this project from GitHub, then the user need to navigate to the backend directory which is the ```django_api``` directory.
 2. Then, type the following command in the command prompt to install relevant dependencies and libraries ```pip install -r requirements.txt```
 3. To ensure that the libraries were installed successfully, the user can run the following command to see a list of installed packages, ```pip list```.
 4. With the required libraries installed, the user can start running the backend server. The user can start the development server using the following command, ```python manage.py runserver 0.0.0.0:8000```.
 
-- In order to construct the frontend, the user need to install Flutter version 3.0.5 from the official website. This entailed downloading the SDK from the official Flutter website and subsequently extracting it to a chosen directory within the local machine's file system.
+- In order to construct the frontend, the user need to install Flutter version 3.0.5 from the [official website](https://docs.flutter.dev/get-started/install). This entailed downloading the SDK from the official Flutter website and subsequently extracting it to a chosen directory within the local machine's file system.
 
-The steps to construct the frontend environment are listed below:
+### The steps to construct the frontend environment are listed below:
 1. Firstly, the user need to download the source code of this project from GitHub, then the user need to navigate to the backend directory which is the ```image_genie_app``` directory.
 2. Then, the user can start running the frontend application. The user can start the mobile application using the following command in the command prompt, ```flutter run```.
 
