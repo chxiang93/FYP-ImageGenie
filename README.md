@@ -68,6 +68,6 @@ The system architecture is shown in Figure above where the frontend part is deve
 - In order to construct the frontend, the user need to install Flutter version 3.0.5 from the [official website](https://docs.flutter.dev/get-started/install). This entailed downloading the SDK from the official Flutter website and subsequently extracting it to a chosen directory within the local machine's file system.
 
 ### The steps to construct the frontend environment are listed below:
-1. Firstly, the user need to download the source code of this project from GitHub, then the user need to navigate to the backend directory which is the ```image_genie_app``` directory.
+1. Firstly, the user need to download the source code of this project from GitHub, then the user need to navigate to the frontend directory which is the ```image_genie_app``` directory.
 2. Then, the user can start running the frontend application. The user can start the mobile application using the following command in the command prompt, ```flutter run```.
 
